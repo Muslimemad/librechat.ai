@@ -1,176 +1,29 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import {
-  Bot,
-  Terminal,
-  Settings2,
-  Code,
+  TrendingUp,
+  BarChart3,
   Search,
-  Plug,
+  Shield,
   Brain,
   Globe,
-  ShieldCheck,
+  Zap,
+  Target,
+  LineChart,
   ArrowRight,
-  Github,
-  Star,
-  MessageSquare,
+  Users,
+  DollarSign,
+  Award,
 } from 'lucide-react'
 import { HomeLayout } from 'fumadocs-ui/layouts/home'
 import { baseOptions } from '@/app/layout.config'
 import type { Metadata } from 'next'
-
-import DemoImageDark from '@/components/home/img/demo_dark.png'
-import DemoImageLight from '@/components/home/img/demo_light.png'
-import DemoImageMobileDark from '@/components/home/img/demo_mobile_dark.png'
-import DemoImageMobileLight from '@/components/home/img/demo_mobile_light.png'
 import FooterMenu from '@/components/FooterMenu'
 
 export const metadata: Metadata = {
-  title: 'LibreChat - The Open-Source AI Platform',
+  title: 'WealthCreators AI — The AI Platform for Wealth Creators',
   description:
-    'LibreChat brings together all your AI conversations in one unified, customizable interface.',
+    'Turn market intelligence into wealth. WealthCreators AI gives you institutional-grade portfolio analysis, market research, and investment insights.',
 }
-
-/* ---------------------------------------------------------------------------
- * Data fetching (server-side, cached)
- * --------------------------------------------------------------------------- */
-
-async function getGitHubData(): Promise<{ stars: number; contributors: number }> {
-  try {
-    const [repoRes, contribRes] = await Promise.all([
-      fetch('https://api.github.com/repos/danny-avila/LibreChat', {
-        next: { revalidate: 3600 },
-      }),
-      fetch(
-        'https://api.github.com/repos/danny-avila/LibreChat/contributors?per_page=1&anon=true',
-        { next: { revalidate: 3600 } },
-      ),
-    ])
-
-    const repoData = repoRes.ok ? await repoRes.json() : {}
-    const stars = repoData.stargazers_count ?? 0
-
-    let contributors = 0
-    if (contribRes.ok) {
-      const linkHeader = contribRes.headers.get('link')
-      if (linkHeader) {
-        const match = linkHeader.match(/page=(\d+)>;\s*rel="last"/)
-        contributors = match ? parseInt(match[1], 10) : 0
-      }
-    }
-
-    return { stars, contributors }
-  } catch {
-    return { stars: 0, contributors: 0 }
-  }
-}
-
-const DOCKER_HUB_REPOS = [
-  'librechat/librechat',
-  'librechat/librechat-api',
-  'librechat/librechat-dev',
-  'librechat/librechat-dev-api',
-  'librechat/lc-dev',
-  'librechat/lc-dev-api',
-]
-
-const GHCR_PACKAGES = ['librechat', 'librechat-api', 'librechat-dev', 'librechat-dev-api']
-
-async function getDockerHubPulls(repo: string): Promise<number> {
-  try {
-    const res = await fetch(`https://hub.docker.com/v2/repositories/${repo}/`, {
-      next: { revalidate: 3600 },
-    })
-    if (!res.ok) return 0
-    const data = await res.json()
-    return data.pull_count ?? 0
-  } catch {
-    return 0
-  }
-}
-
-async function getGhcrDownloads(pkg: string): Promise<number> {
-  try {
-    const res = await fetch(`https://github.com/danny-avila/LibreChat/pkgs/container/${pkg}`, {
-      next: { revalidate: 3600 },
-    })
-    if (!res.ok) return 0
-    const html = await res.text()
-    const match = html.match(/Total downloads[\s\S]*?title="(\d+)"/)
-    return match ? parseInt(match[1], 10) : 0
-  } catch {
-    return 0
-  }
-}
-
-async function getContainerPulls(): Promise<number> {
-  const [dockerHubCounts, ghcrCounts] = await Promise.all([
-    Promise.all(DOCKER_HUB_REPOS.map(getDockerHubPulls)),
-    Promise.all(GHCR_PACKAGES.map(getGhcrDownloads)),
-  ])
-  return [...dockerHubCounts, ...ghcrCounts].reduce((sum, n) => sum + n, 0)
-}
-
-/* ---------------------------------------------------------------------------
- * Helpers
- * --------------------------------------------------------------------------- */
-
-function formatNumber(num: number): string {
-  if (num >= 1_000_000) {
-    return `${(num / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`
-  }
-  if (num >= 1_000) {
-    return `${(num / 1_000).toFixed(1).replace(/\.0$/, '')}k`
-  }
-  return num.toString()
-}
-
-/* ---------------------------------------------------------------------------
- * Company logos data
- * --------------------------------------------------------------------------- */
-
-const companies = [
-  {
-    name: 'Shopify',
-    logoLight: '/images/logos/Shopify_light.svg',
-    logoDark: '/images/logos/Shopify_dark.svg',
-    isSvg: true,
-    height: 'h-12',
-    imgHeight: 48,
-  },
-  {
-    name: 'Daimler Truck',
-    logoLight: '/images/logos/DaimlerTruck_light.svg',
-    logoDark: '/images/logos/DaimlerTruck_dark.svg',
-    isSvg: true,
-    height: 'h-6',
-    imgHeight: 24,
-  },
-  {
-    name: 'Boston University',
-    logoLight: '/images/logos/BostonUniversity_light.png',
-    logoDark: '/images/logos/BostonUniversity_dark.png',
-    isSvg: false,
-    height: 'h-12',
-    imgHeight: 48,
-  },
-  {
-    name: 'ClickHouse',
-    logoLight: '/images/logos/ClickHouse_light.svg',
-    logoDark: '/images/logos/ClickHouse_dark.svg',
-    isSvg: true,
-    height: 'h-14',
-    imgHeight: 56,
-  },
-  {
-    name: 'Stripe',
-    logoLight: '/images/logos/Stripe wordmark - Slate.svg',
-    logoDark: '/images/logos/Stripe wordmark - White.svg',
-    isSvg: true,
-    height: 'h-10',
-    imgHeight: 40,
-  },
-]
 
 /* ---------------------------------------------------------------------------
  * Features data
@@ -178,97 +31,118 @@ const companies = [
 
 const features = [
   {
-    icon: Bot,
-    title: 'Agents',
-    description: 'Advanced agents with file handling, code interpretation, and API actions',
-    href: '/docs/features/agents',
+    icon: TrendingUp,
+    title: 'Portfolio Intelligence',
+    description:
+      'AI-powered portfolio analysis, rebalancing suggestions, and performance attribution across all asset classes.',
+    href: '/docs/features/portfolio',
   },
   {
-    icon: Terminal,
-    title: 'Code Interpreter',
-    description: 'Execute code in multiple languages securely with zero setup',
-    href: '/docs/features/code_interpreter',
-  },
-  {
-    icon: Settings2,
-    title: 'Models',
-    description: 'AI model selection including Anthropic, AWS, OpenAI, Azure, and more',
-    href: '/docs/configuration/pre_configured_ai',
-  },
-  {
-    icon: Code,
-    title: 'Artifacts',
-    description: 'Create React, HTML code, and Mermaid diagrams in chat',
-    href: '/docs/features/artifacts',
+    icon: BarChart3,
+    title: 'Market Research',
+    description:
+      'Deep market analysis with AI-powered insights, trend detection, and competitive intelligence at your fingertips.',
+    href: '/docs/features/market-research',
   },
   {
     icon: Search,
-    title: 'Search',
-    description: 'Search for messages, files, and code snippets in an instant',
-    href: '/docs/configuration/meilisearch',
-  },
-  {
-    icon: Plug,
-    title: 'MCP',
-    description: 'Connect to any tool or service with Model Context Protocol support',
-    href: '/docs/features/mcp',
+    title: 'Investment Screener',
+    description:
+      'Screen thousands of stocks, ETFs, and crypto assets using natural language — no complex query syntax required.',
+    href: '/docs/features/screener',
   },
   {
     icon: Brain,
-    title: 'Memory',
-    description: 'Persistent context across conversations so your AI remembers you',
-    href: '/docs/features/memory',
+    title: 'AI Agents',
+    description:
+      'Autonomous agents that monitor markets, run research workflows, and surface opportunities while you sleep.',
+    href: '/docs/features/agents',
+  },
+  {
+    icon: LineChart,
+    title: 'Risk Analysis',
+    description:
+      'Portfolio risk metrics, correlation analysis, drawdown simulation, and hedging strategies — all AI-explained.',
+    href: '/docs/features/risk',
   },
   {
     icon: Globe,
-    title: 'Web Search',
-    description: 'Give any model live internet access with built-in search and reranking',
-    href: '/docs/features/web_search',
+    title: 'News Intelligence',
+    description:
+      'AI-curated financial news with real-time sentiment scoring and impact analysis across your holdings.',
+    href: '/docs/features/news',
   },
   {
-    icon: ShieldCheck,
-    title: 'Authentication',
-    description: 'Enterprise-ready SSO with OAuth, SAML, LDAP, and two-factor auth',
-    href: '/docs/configuration/authentication',
+    icon: Target,
+    title: 'Financial Planning',
+    description:
+      'Goal-based wealth planning, retirement projections, and savings optimization tailored to your timeline.',
+    href: '/docs/features/planning',
   },
+  {
+    icon: Zap,
+    title: 'Tax Optimization',
+    description:
+      'AI-assisted tax-loss harvesting, wash-sale avoidance, and year-end tax strategy recommendations.',
+    href: '/docs/features/tax',
+  },
+  {
+    icon: Shield,
+    title: 'Enterprise Security',
+    description:
+      'Bank-grade encryption, SOC 2 compliance, SSO/SAML support, and full audit trails for your financial data.',
+    href: '/docs/configuration/security',
+  },
+]
+
+/* ---------------------------------------------------------------------------
+ * Trusted By Section data
+ * --------------------------------------------------------------------------- */
+
+const trustedBy = [
+  { name: 'Family Offices', value: '500+' },
+  { name: 'RIAs', value: '1,200+' },
+  { name: 'Hedge Funds', value: '80+' },
+  { name: 'Wealth Advisors', value: '3,400+' },
 ]
 
 /* ---------------------------------------------------------------------------
  * Hero Section
  * --------------------------------------------------------------------------- */
 
-function HeroSection({ stars }: { stars: number }) {
+function HeroSection() {
   return (
-    <section className="px-4 pb-24 pt-16 sm:px-6 md:pt-24 lg:px-8 lg:pt-32">
+    <section className="relative overflow-hidden px-4 pb-24 pt-16 sm:px-6 md:pt-24 lg:px-8 lg:pt-32">
+      {/* Subtle gradient orb */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+      >
+        <div
+          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary/20 to-accent/20 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+          }}
+        />
+      </div>
+
       <div className="mx-auto max-w-4xl text-center">
-        {/* GitHub stars badge */}
-        {stars > 0 && (
-          <Link
-            href="https://github.com/danny-avila/LibreChat"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mb-8 inline-flex items-center rounded-full border border-border text-sm transition-colors hover:bg-accent"
-            aria-label={`Star LibreChat on GitHub — ${formatNumber(stars)} stars`}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 text-foreground">
-              <Github className="size-4" aria-hidden="true" />
-              Star on GitHub
-            </span>
-            <span className="inline-flex items-center gap-1.5 border-l border-border px-3 py-2 text-muted-foreground">
-              <Star className="size-3.5" aria-hidden="true" />
-              {formatNumber(stars)}
-            </span>
-          </Link>
-        )}
+        {/* Badge */}
+        <div className="mb-8 inline-flex items-center rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm text-primary">
+          <Award className="mr-2 size-3.5" aria-hidden="true" />
+          Institutional-grade AI for every wealth creator
+        </div>
 
         <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          The Open-Source
+          The AI Platform
           <br />
-          AI Platform
+          <span className="text-primary">for Wealth Creators</span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          LibreChat brings together all your AI conversations in one unified, customizable interface
+          Turn market intelligence into wealth. Get institutional-grade portfolio analysis,
+          real-time market research, and AI-powered investment insights — all in one platform.
         </p>
 
         {/* CTAs */}
@@ -276,62 +150,38 @@ function HeroSection({ stars }: { stars: number }) {
           <Link
             href="/docs"
             className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            aria-label="Get started with LibreChat documentation"
+            aria-label="Get started with WealthCreators AI"
           >
             Get Started
             <ArrowRight className="ml-2 size-4" aria-hidden="true" />
           </Link>
           <Link
-            href="https://chat.librechat.ai"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/docs/quick_start"
             className="inline-flex items-center rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            aria-label="Try the LibreChat demo"
+            aria-label="Read the quick start guide"
           >
-            Try Demo
+            Quick Start Guide
           </Link>
         </nav>
       </div>
 
-      {/* Demo screenshot */}
-      <div className="mx-auto mt-16 max-w-5xl">
-        {/* Desktop */}
-        <div className="hidden md:block">
-          <Image
-            src={DemoImageLight}
-            alt="LibreChat desktop interface in light mode"
-            className="block rounded-xl border border-border shadow-sm dark:hidden"
-            priority
-            sizes="(max-width: 1280px) 90vw, 1120px"
-            placeholder="blur"
-          />
-          <Image
-            src={DemoImageDark}
-            alt="LibreChat desktop interface in dark mode"
-            className="hidden rounded-xl border border-border shadow-sm dark:block"
-            priority
-            sizes="(max-width: 1280px) 90vw, 1120px"
-            placeholder="blur"
-          />
-        </div>
-        {/* Mobile */}
-        <div className="block md:hidden">
-          <Image
-            src={DemoImageMobileLight}
-            alt="LibreChat mobile interface in light mode"
-            className="mx-auto block max-w-sm rounded-xl border border-border shadow-sm dark:hidden"
-            priority
-            sizes="(max-width: 640px) 90vw, 384px"
-            placeholder="blur"
-          />
-          <Image
-            src={DemoImageMobileDark}
-            alt="LibreChat mobile interface in dark mode"
-            className="mx-auto hidden max-w-sm rounded-xl border border-border shadow-sm dark:block"
-            priority
-            sizes="(max-width: 640px) 90vw, 384px"
-            placeholder="blur"
-          />
+      {/* Stats strip */}
+      <div className="mx-auto mt-16 max-w-3xl">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {[
+            { label: 'Assets Analyzed', value: '$2.4T+' },
+            { label: 'Active Users', value: '50k+' },
+            { label: 'Countries', value: '90+' },
+            { label: 'AI Models', value: '20+' },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-xl border border-border bg-card p-4 text-center"
+            >
+              <p className="text-2xl font-bold text-primary">{stat.value}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -344,35 +194,17 @@ function HeroSection({ stars }: { stars: number }) {
 
 function TrustedBySection() {
   return (
-    <section className="border-y border-border px-4 py-24 sm:px-6 lg:px-8">
+    <section className="border-y border-border px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        <p className="mb-12 text-center text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          Trusted by companies worldwide
+        <p className="mb-10 text-center text-sm font-medium uppercase tracking-widest text-muted-foreground">
+          Trusted by wealth professionals worldwide
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-          {companies.map((company) => (
-            <figure key={company.name} className="flex items-center justify-center px-4">
-              {/* Light mode logo */}
-              <Image
-                src={company.logoLight}
-                alt={`${company.name} logo`}
-                className={`block ${company.height} w-auto object-contain opacity-60 transition-opacity hover:opacity-100 dark:hidden`}
-                width={160}
-                height={company.imgHeight}
-                sizes="160px"
-                unoptimized={company.isSvg}
-              />
-              {/* Dark mode logo */}
-              <Image
-                src={company.logoDark}
-                alt={`${company.name} logo`}
-                className={`hidden ${company.height} w-auto object-contain opacity-60 transition-opacity hover:opacity-100 dark:block`}
-                width={160}
-                height={company.imgHeight}
-                sizes="160px"
-                unoptimized={company.isSvg}
-              />
-            </figure>
+          {trustedBy.map((item) => (
+            <div key={item.name} className="flex flex-col items-center gap-1 px-4">
+              <span className="text-3xl font-bold text-primary">{item.value}</span>
+              <span className="text-sm text-muted-foreground">{item.name}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -390,10 +222,10 @@ function FeaturesSection() {
       <div className="mx-auto max-w-6xl">
         <header className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Everything you need
+            Every tool you need to build wealth
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A comprehensive platform for AI-powered conversations
+            A comprehensive AI platform built for serious investors and wealth creators
           </p>
         </header>
 
@@ -404,16 +236,18 @@ function FeaturesSection() {
               <article key={feature.title}>
                 <Link
                   href={feature.href}
-                  className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:bg-muted"
+                  className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/40 hover:bg-muted hover:shadow-sm"
                 >
-                  <Icon
-                    className="mb-4 size-6 text-muted-foreground transition-colors group-hover:text-foreground"
-                    aria-hidden="true"
-                  />
+                  <div className="mb-4 inline-flex size-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon
+                      className="size-5 text-primary transition-colors group-hover:text-primary"
+                      aria-hidden="true"
+                    />
+                  </div>
                   <h3 className="mb-2 text-base font-semibold text-foreground">{feature.title}</h3>
                   <p className="flex-1 text-sm text-muted-foreground">{feature.description}</p>
                   <span
-                    className="mt-4 inline-flex items-center text-sm font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100"
+                    className="mt-4 inline-flex items-center text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100"
                     aria-hidden="true"
                   >
                     Learn more
@@ -430,75 +264,97 @@ function FeaturesSection() {
 }
 
 /* ---------------------------------------------------------------------------
- * Community Section
+ * Why Section
  * --------------------------------------------------------------------------- */
 
-function CommunitySection({
-  stars,
-  pulls,
-  contributors,
-}: {
-  stars: number
-  pulls: number
-  contributors: number
-}) {
+function WhySection() {
   return (
-    <section className="border-y border-border px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
-        <header className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Open source, community driven
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Join thousands of developers and organizations building with LibreChat
-          </p>
-        </header>
+    <section className="border-y border-border bg-muted/30 px-4 py-24 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Built for the modern wealth creator
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Whether you manage a family office, run an RIA, or are building your own portfolio,
+              WealthCreators AI delivers the intelligence you need at the speed of thought.
+            </p>
+            <ul className="mt-8 space-y-4">
+              {[
+                'Connect any AI model — Anthropic, OpenAI, Gemini, and more',
+                'Deploy on your own infrastructure for full data sovereignty',
+                'Integrate with your existing tools via MCP and REST APIs',
+                'Multi-user support with role-based access controls',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15">
+                    <svg className="size-3 text-primary" fill="currentColor" viewBox="0 0 12 12">
+                      <path
+                        d="M10 3L5 8.5 2 5.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-sm text-muted-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Link
+                href="/docs"
+                className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Explore the docs
+                <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
 
-        {/* Stats */}
-        <div className="mb-16 grid grid-cols-3 gap-8">
-          <div className="text-center">
-            <p className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              {stars > 0 ? formatNumber(stars) : '--'}
-            </p>
-            <p className="mt-2 text-sm text-muted-foreground">GitHub Stars</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              {pulls > 0 ? formatNumber(pulls) : '--'}
-            </p>
-            <p className="mt-2 text-sm text-muted-foreground">Docker Pulls</p>
-          </div>
-          <div className="text-center">
-            <p className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              {contributors > 0 ? formatNumber(contributors) : '--'}
-            </p>
-            <p className="mt-2 text-sm text-muted-foreground">Contributors</p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[
+              {
+                icon: DollarSign,
+                title: 'Portfolio-First AI',
+                description:
+                  'Every AI interaction is context-aware of your portfolio and investment thesis.',
+              },
+              {
+                icon: Users,
+                title: 'Team Collaboration',
+                description:
+                  'Share research, insights, and AI conversations with your investment team.',
+              },
+              {
+                icon: Globe,
+                title: 'Global Markets',
+                description:
+                  'Coverage across equities, fixed income, crypto, commodities, and alternatives.',
+              },
+              {
+                icon: Shield,
+                title: 'Data Sovereignty',
+                description:
+                  'Your financial data never leaves your infrastructure. Full self-hosting supported.',
+              },
+            ].map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.title} className="rounded-xl border border-border bg-card p-5">
+                  <div className="mb-3 inline-flex size-9 items-center justify-center rounded-lg bg-primary/10">
+                    <Icon className="size-4 text-primary" aria-hidden="true" />
+                  </div>
+                  <h3 className="mb-1 text-sm font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground">{item.description}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
-
-        {/* Links */}
-        <nav className="flex items-center justify-center gap-4" aria-label="Community links">
-          <Link
-            href="https://github.com/danny-avila/LibreChat"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            aria-label="LibreChat on GitHub"
-          >
-            <Github className="size-4" aria-hidden="true" />
-            GitHub
-          </Link>
-          <Link
-            href="https://discord.librechat.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            aria-label="LibreChat on Discord"
-          >
-            <MessageSquare className="size-4" aria-hidden="true" />
-            Discord
-          </Link>
-        </nav>
       </div>
     </section>
   )
@@ -513,19 +369,25 @@ function CTASection() {
     <section className="px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Start building with LibreChat
+          Start building wealth with AI
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Get up and running in minutes with our quickstart guide
+          Get up and running in minutes. Deploy locally or on your own infrastructure.
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex items-center justify-center gap-4">
           <Link
-            href="/docs"
+            href="/docs/quick_start"
             className="inline-flex items-center rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             aria-label="Read the quickstart guide"
           >
-            Quickstart Guide
+            Quick Start Guide
             <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+          </Link>
+          <Link
+            href="/blog"
+            className="inline-flex items-center rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            Read the Blog
           </Link>
         </div>
       </div>
@@ -537,16 +399,14 @@ function CTASection() {
  * Page Component
  * --------------------------------------------------------------------------- */
 
-export default async function HomePage() {
-  const [{ stars, contributors }, pulls] = await Promise.all([getGitHubData(), getContainerPulls()])
-
+export default function HomePage() {
   return (
     <HomeLayout {...baseOptions} nav={{ ...baseOptions.nav, transparentMode: 'top' }}>
       <main className="min-h-screen">
-        <HeroSection stars={stars} />
+        <HeroSection />
         <TrustedBySection />
         <FeaturesSection />
-        <CommunitySection stars={stars} pulls={pulls} contributors={contributors} />
+        <WhySection />
         <CTASection />
       </main>
       <div className="border-t border-border px-4 py-16 sm:px-6 lg:px-8">

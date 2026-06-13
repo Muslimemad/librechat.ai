@@ -1,0 +1,65 @@
+---
+title: Investment Screener
+description: Screen thousands of stocks, ETFs, and crypto assets using natural language — no complex query syntax required.
+icon: Search
+---
+
+## Overview
+
+The Investment Screener lets you find investment opportunities using plain English. Instead of learning complex filter syntax, just describe what you're looking for and the AI translates it into a precise query.
+
+## Natural Language Screening
+
+Simply describe the assets you want to find:
+
+> "Show me profitable small-cap tech companies with revenue growth above 20% and a P/E below 30"
+
+> "Find ETFs with expense ratios under 0.1% that track emerging markets"
+
+> "Screen for dividend stocks with yields above 4%, payout ratios below 60%, and 10+ years of consecutive dividend growth"
+
+## Supported Asset Classes
+
+- **Equities** — US stocks, international stocks, ADRs
+- **ETFs** — equity, bond, commodity, sector, thematic
+- **REITs** — residential, commercial, industrial, healthcare
+- **Crypto** — major tokens and DeFi protocols (where data available)
+
+## Available Screening Criteria
+
+### Fundamentals
+- Revenue, earnings, margins, growth rates
+- Valuation multiples (P/E, P/B, P/S, EV/EBITDA)
+- Balance sheet metrics (debt-to-equity, current ratio)
+- Return metrics (ROE, ROA, ROIC)
+
+### Technical
+- Price momentum (1M, 3M, 6M, 12M returns)
+- Moving average relationships (50d, 200d)
+- Relative strength vs. sector and market
+
+### Dividend
+- Dividend yield and payout ratio
+- Dividend growth rate and streak
+- Coverage ratio
+
+### ESG
+- ESG scores by provider
+- Carbon intensity
+- Board diversity metrics
+
+## Saving Screeners
+
+Save and schedule your screeners to run automatically:
+
+```yaml
+screeners:
+  - name: "Quality Growth"
+    schedule: "0 9 * * 1-5"  # 9am weekdays
+    criteria: "profitable companies with revenue growth > 15% and debt/equity < 1"
+    notify: true
+```
+
+<Callout type="tip">
+Combine the screener with [AI Agents](/docs/features/agents) to automatically research the top results.
+</Callout>

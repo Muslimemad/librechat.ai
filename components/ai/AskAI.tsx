@@ -226,7 +226,7 @@ function ChatInput({
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={mode === 'page' ? 'Ask about this page…' : 'Ask about LibreChat…'}
+          placeholder={mode === 'page' ? 'Ask about this page…' : 'Ask WealthCreators AI…'}
           rows={rows}
           className="flex-1 resize-none bg-transparent px-2 py-1.5 text-sm text-fd-secondary-foreground placeholder:text-fd-muted-foreground focus-visible:outline-none"
           onKeyDown={(e) => {
@@ -336,11 +336,7 @@ export function AskAI() {
     for (const m of messages) {
       if (m.role !== 'assistant' || navigatedRef.current.has(m.id)) continue
       for (const part of m.parts ?? []) {
-        if (
-          part.type === 'tool-navigate' &&
-          'state' in part &&
-          part.state === 'output-available'
-        ) {
+        if (part.type === 'tool-navigate' && 'state' in part && part.state === 'output-available') {
           const result = part.output as { action?: string; url?: string } | undefined
           if (
             result?.action === 'navigate' &&
@@ -360,8 +356,7 @@ export function AskAI() {
     if (!text || isLoading) return
     setInput('')
     setShareUrl(null)
-    const context =
-      mode === 'search' && isDocsPage ? `[I'm currently on ${pathname}] ` : ''
+    const context = mode === 'search' && isDocsPage ? `[I'm currently on ${pathname}] ` : ''
     sendMessage({ text: context + text })
   }, [input, isLoading, sendMessage, pathname, mode, isDocsPage])
 
@@ -453,7 +448,7 @@ export function AskAI() {
     } catch {
       // invalid hash, ignore
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Keyboard shortcut: Cmd/Ctrl + .
@@ -602,8 +597,7 @@ export function AskAI() {
                     ?.filter((p): p is { type: 'text'; text: string } => p.type === 'text')
                     .map((p) => p.text)
                     .join('')
-                  const docRefs =
-                    m.role === 'assistant' && fullText ? extractDocRefs(fullText) : []
+                  const docRefs = m.role === 'assistant' && fullText ? extractDocRefs(fullText) : []
 
                   // Collect sources from search tool results
                   const sources: { title: string; url: string }[] = []
@@ -615,9 +609,7 @@ export function AskAI() {
                         part.state === 'output-available' &&
                         'output' in part
                       ) {
-                        const output = part.output as
-                          | { title: string; url: string }[]
-                          | undefined
+                        const output = part.output as { title: string; url: string }[] | undefined
                         if (Array.isArray(output)) {
                           for (const s of output) {
                             if (s.url && s.title) sources.push({ title: s.title, url: s.url })
@@ -660,9 +652,8 @@ export function AskAI() {
                                 'state' in part &&
                                 part.state === 'output-available'
                               ) {
-                                const res = (
-                                  part as { output?: { url?: string; title?: string } }
-                                ).output
+                                const res = (part as { output?: { url?: string; title?: string } })
+                                  .output
                                 if (res?.url) {
                                   return (
                                     <Link
@@ -694,9 +685,7 @@ export function AskAI() {
                                     key={i}
                                     className="mb-1.5 flex items-center gap-1.5 text-xs text-fd-muted-foreground"
                                   >
-                                    <Search
-                                      className={cn('size-3', !isDone && 'animate-pulse')}
-                                    />
+                                    <Search className={cn('size-3', !isDone && 'animate-pulse')} />
                                     {isDone ? 'Searched docs' : 'Searching docs…'}
                                   </div>
                                 )

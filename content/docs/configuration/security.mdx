@@ -1,0 +1,133 @@
+---
+title: Security
+description: Enterprise-grade security for your financial data — encryption, SSO, audit logs, and compliance.
+icon: Shield
+---
+
+## Overview
+
+WealthCreators AI is built with security-first principles. Your financial data deserves the highest level of protection available.
+
+## Encryption
+
+### Data at Rest
+
+All financial data stored in the database is encrypted using AES-256:
+
+```yaml
+security:
+  encryption:
+    algorithm: AES-256-GCM
+    key_rotation: 90  # days
+```
+
+### Data in Transit
+
+All API calls and web traffic use TLS 1.3. Configure your reverse proxy to enforce this:
+
+```nginx
+ssl_protocols TLSv1.3;
+ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
+```
+
+## Authentication
+
+### SSO / SAML 2.0
+
+Enterprise deployments support SAML 2.0 for single sign-on:
+
+```yaml
+auth:
+  saml:
+    enabled: true
+    idp_metadata_url: https://your-idp.example.com/metadata
+    sp_entity_id: wealthcreators-ai
+    sp_acs_url: https://app.yourdomain.com/auth/saml/callback
+```
+
+### OAuth 2.0 / OIDC
+
+Connect to any OIDC provider:
+
+- Microsoft Entra ID (Azure AD)
+- Google Workspace
+- Okta
+- Auth0
+
+See [Authentication](/docs/configuration/authentication) for full provider setup guides.
+
+### Two-Factor Authentication
+
+Enable TOTP-based 2FA for all users:
+
+```yaml
+auth:
+  two_factor:
+    enabled: true
+    required: true  # enforce for all users
+    methods:
+      - totp
+      - email
+```
+
+## Access Control
+
+Role-based access control (RBAC) for team environments:
+
+| Role | Capabilities |
+|---|---|
+| Admin | Full platform access, user management |
+| Portfolio Manager | Portfolio read/write, research, screener |
+| Analyst | Research and screener access only |
+| Read-Only | View portfolios and reports only |
+
+Configure roles in `wealthcreators.yaml`:
+
+```yaml
+access_control:
+  roles:
+    - name: analyst
+      permissions:
+        - market_research:read
+        - screener:read
+        - portfolio:read
+```
+
+## Audit Logging
+
+All user actions are logged for compliance:
+
+```yaml
+audit:
+  enabled: true
+  log_level: all
+  retention_days: 2555  # 7 years for regulatory compliance
+  events:
+    - login
+    - logout
+    - portfolio_view
+    - trade_suggestion_viewed
+    - data_export
+```
+
+## Data Residency
+
+For regulatory compliance, configure data residency:
+
+```yaml
+data:
+  residency: EU  # or US, APAC
+  storage_provider: s3  # or azure, gcs
+  region: eu-west-1
+```
+
+## Self-Hosting for Data Sovereignty
+
+Running WealthCreators AI on your own infrastructure means:
+
+- Financial data never leaves your servers
+- No third-party access to portfolio information
+- Full control over backup and disaster recovery
+- Compliance with internal security policies
+
+See [Remote Install](/docs/remote) for cloud deployment guides.

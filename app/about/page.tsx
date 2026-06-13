@@ -23,9 +23,9 @@ import X from '@/components/icons/x'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About LibreChat',
+  title: 'About WealthCreators AI',
   description:
-    'LibreChat is a free, open-source AI platform that brings together all your AI conversations in one unified, customizable interface.',
+    'WealthCreators AI is an open-source AI platform built for wealth creators — delivering institutional-grade portfolio intelligence, market research, and investment insights.',
 }
 
 async function getGitHubData(): Promise<{
@@ -35,11 +35,11 @@ async function getGitHubData(): Promise<{
 }> {
   try {
     const [repoRes, contribRes] = await Promise.all([
-      fetch('https://api.github.com/repos/danny-avila/LibreChat', {
+      fetch('https://api.github.com/repos/muslimemad/librechat.ai', {
         next: { revalidate: 3600 },
       }),
       fetch(
-        'https://api.github.com/repos/danny-avila/LibreChat/contributors?per_page=1&anon=true',
+        'https://api.github.com/repos/muslimemad/librechat.ai/contributors?per_page=1&anon=true',
         {
           next: { revalidate: 3600 },
         },
@@ -81,15 +81,15 @@ function HeroSection() {
     <section className="px-4 pb-20 pt-16 sm:px-6 md:pt-24 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <p className="mb-6 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          About LibreChat
+          About WealthCreators AI
         </p>
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          Every AI, for Everyone
+          AI Built for Wealth Creators
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          LibreChat is a free, open-source AI platform that brings together the best language models
-          from every major provider into one unified, customizable interface. No vendor lock-in, no
-          subscriptions, full control.
+          WealthCreators AI is an open-source platform that delivers institutional-grade portfolio
+          intelligence, market research, and investment insights to every wealth creator. No vendor
+          lock-in, no subscriptions, full data sovereignty.
         </p>
         <nav
           className="mt-10 flex items-center justify-center gap-4"
@@ -103,7 +103,7 @@ function HeroSection() {
             <ArrowRight className="ml-2 size-4" aria-hidden="true" />
           </Link>
           <Link
-            href="https://github.com/danny-avila/LibreChat"
+            href="https://github.com/muslimemad/wealthcreators-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
@@ -208,10 +208,10 @@ function ValuesSection() {
       <div className="mx-auto max-w-6xl">
         <header className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Why LibreChat
+            Why WealthCreators AI
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Built for developers, teams, and enterprises who need control
+            Built for wealth creators, investors, and financial professionals who need an edge
           </p>
         </header>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -246,19 +246,21 @@ function MissionSection() {
         </header>
         <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
           <p>
-            AI is transforming how we work, create, and communicate. But access to powerful AI tools
-            shouldn&apos;t require vendor lock-in, opaque pricing, or surrendering your data.
+            AI is transforming how we invest, research, and build wealth. But institutional-grade
+            tools have historically been locked behind expensive Bloomberg terminals and proprietary
+            platforms accessible only to the largest funds.
           </p>
           <p>
-            LibreChat exists to democratize AI. We believe everyone should have a unified,
-            customizable interface that works with any model provider — one they can self-host,
-            audit, and extend without limits.
+            WealthCreators AI exists to democratize wealth intelligence. We believe every investor —
+            whether managing a family office, running an RIA, or building personal wealth — deserves
+            access to the same quality of AI-powered research and analysis that institutional
+            players have. Self-hosted, private, and fully under your control.
           </p>
           <p>
-            What started as a single developer&apos;s project has grown into a community of hundreds
-            of contributors and thousands of organizations worldwide. From startups to Fortune 500
-            companies, universities to government agencies — LibreChat is the open-source foundation
-            they build on.
+            Built on the open-source LibreChat foundation, WealthCreators AI extends the platform
+            with wealth-specific features: portfolio intelligence, investment screeners, market
+            research, risk analysis, and tax optimization — all powered by the best AI models from
+            every major provider.
           </p>
         </div>
       </div>
@@ -277,33 +279,16 @@ function ContributorsSection() {
         <div className="mb-4 flex items-center justify-center gap-2">
           <Heart className="size-5 text-muted-foreground" aria-hidden="true" />
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Built by the Community
+            Built for the Community
           </h2>
         </div>
         <p className="mb-12 text-lg text-muted-foreground">
-          LibreChat exists thanks to every person who contributes code, documentation, translations,
-          and ideas
+          WealthCreators AI is built on open-source foundations and shaped by the wealth creators,
+          investors, and developers who use it every day
         </p>
-        <Link
-          href="https://github.com/danny-avila/LibreChat/graphs/contributors"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block transition-opacity hover:opacity-80"
-          aria-label="View all LibreChat contributors on GitHub"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://contrib.rocks/image?repo=danny-avila/LibreChat&columns=16&max=160"
-            alt="LibreChat contributors"
-            className="mx-auto rounded-xl"
-            loading="lazy"
-            width={800}
-            height={200}
-          />
-        </Link>
         <div className="mt-10">
           <Link
-            href="https://github.com/danny-avila/LibreChat"
+            href="https://github.com/muslimemad/wealthcreators-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
@@ -324,39 +309,39 @@ function ContributorsSection() {
 const communityLinks = [
   {
     icon: Github,
-    title: 'GitHub Discussions',
-    description: 'Ask questions, share ideas, report bugs',
-    href: 'https://github.com/danny-avila/LibreChat/discussions',
+    title: 'GitHub',
+    description: 'Browse source code, issues, and discussions',
+    href: 'https://github.com/muslimemad/wealthcreators-ai',
   },
   {
     icon: Discord,
     title: 'Discord',
     description: 'Chat with the community in real-time',
-    href: 'https://discord.librechat.ai',
+    href: '#',
   },
   {
     icon: Mail,
     title: 'Email',
-    description: 'contact@librechat.ai',
-    href: 'mailto:contact@librechat.ai',
+    description: 'contact@wealthcreators.ai',
+    href: 'mailto:contact@wealthcreators.ai',
   },
   {
     icon: Linkedin,
     title: 'LinkedIn',
     description: 'Follow for updates and news',
-    href: 'https://linkedin.librechat.ai',
+    href: '#',
   },
   {
     icon: X,
     title: 'X (Twitter)',
-    description: '@LibreChatAI',
-    href: 'https://x.com/LibreChatAI',
+    description: '@WealthCreatorsAI',
+    href: '#',
   },
   {
     icon: Youtube,
     title: 'YouTube',
     description: 'Tutorials and demos',
-    href: 'https://www.youtube.com/@LibreChat',
+    href: '#',
   },
 ]
 

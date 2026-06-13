@@ -14,15 +14,16 @@ const DEFAULT_CWV_SAMPLE_RATE = 0.5
 
 export const metadata: Metadata = {
   title: {
-    default: 'LibreChat',
-    template: '%s | LibreChat',
+    default: 'WealthCreators AI',
+    template: '%s | WealthCreators AI',
   },
-  description: 'The Open-Source AI Platform',
-  metadataBase: new URL('https://www.librechat.ai'),
+  description:
+    'The AI Platform for Wealth Creators — portfolio intelligence, market research, and investment insights powered by AI.',
+  metadataBase: new URL('https://www.wealthcreators.ai'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'LibreChat',
+    siteName: 'WealthCreators AI',
     images: ['/images/socialcards/default-image.png'],
   },
   twitter: {
