@@ -1,0 +1,364 @@
+# Instincts generated from https://github.com/Muslimemad/librechat.ai
+# Generated: 2026-06-13T18:48:35.550Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: librechat.ai-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: feat
+
+## Evidence
+
+- 1 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat: rebrand to WealthCreators AI platform for wealth creators
+
+---
+id: librechat.ai-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Commit Length
+
+## Action
+
+Write moderate-length commit messages (~63 characters)
+
+## Evidence
+
+- Average commit message length: 63 chars
+- Based on 1 commits
+
+---
+id: librechat.ai-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: librechat.ai-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: librechat.ai-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: librechat.ai-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/Muslimemad/librechat.ai
+---
+
+# Librechat.ai Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: librechat.ai-instinct-file-naming
+trigger: "When creating a new file in the codebase"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct File Naming
+
+## Action
+
+Name the file using camelCase convention
+
+## Evidence
+
+- Pattern in namingConventions.files
+- Observed in src files
+
+---
+id: librechat.ai-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Function Naming
+
+## Action
+
+Use camelCase for the function name
+
+## Evidence
+
+- Pattern in namingConventions.functions
+- Observed in TypeScript files
+
+---
+id: librechat.ai-instinct-class-naming
+trigger: "When declaring a new class"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Class Naming
+
+## Action
+
+Use PascalCase for the class name
+
+## Evidence
+
+- Pattern in namingConventions.classes
+- Observed in TypeScript files
+
+---
+id: librechat.ai-instinct-constant-naming
+trigger: "When defining a constant value"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for the constant name
+
+## Evidence
+
+- Pattern in namingConventions.constants
+- Observed in TypeScript files
+
+---
+id: librechat.ai-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Import Alias
+
+## Action
+
+Use import aliases instead of relative paths
+
+## Evidence
+
+- Pattern in importStyle: alias
+- Observed in import statements
+
+---
+id: librechat.ai-instinct-export-style
+trigger: "When exporting modules or functions"
+confidence: 0.6
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Export Style
+
+## Action
+
+Use both named and default exports as appropriate
+
+## Evidence
+
+- Pattern in exportStyle: mixed
+- Observed in TypeScript files
+
+---
+id: librechat.ai-instinct-commit-format
+trigger: "When making a git commit"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Commit Format
+
+## Action
+
+Use the conventional commit format with a prefix (e.g., 'feat: ...')
+
+## Evidence
+
+- Seen in commit: 'feat: rebrand to WealthCreators AI platform for wealth creators'
+- Pattern in commits.prefixes
+
+---
+id: librechat.ai-instinct-commit-length
+trigger: "When writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Commit Length
+
+## Action
+
+Keep the commit message concise, around 63 characters on average
+
+## Evidence
+
+- Pattern in commits.averageLength
+- Seen in commit examples
+
+---
+id: librechat.ai-instinct-try-catch-error
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Try Catch Error
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- Pattern in errorHandling.style: try-catch
+- Observed in TypeScript files
+
+---
+id: librechat.ai-instinct-no-custom-error-classes
+trigger: "When considering custom error classes"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct No Custom Error Classes
+
+## Action
+
+Avoid implementing custom error classes
+
+## Evidence
+
+- Pattern in errorHandling.customErrorClasses: false
+
+---
+id: librechat.ai-instinct-no-error-boundaries
+trigger: "When considering React error boundaries"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct No Error Boundaries
+
+## Action
+
+Do not add error boundaries to React components
+
+## Evidence
+
+- Pattern in errorHandling.errorBoundaries: false
+
+---
+id: librechat.ai-instinct-test-location
+trigger: "When adding new tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: Muslimemad/librechat.ai
+---
+
+# Librechat.ai Instinct Test Location
+
+## Action
+
+Place test files in a separate directory from source files
+
+## Evidence
+
+- Pattern in architecture.testLocation: separate
+
