@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         ...(baseOptions.links ?? []),
         {
           type: 'icon',
-          url: 'https://discord.librechat.ai',
+          url: '#',
           icon: (
             <svg
               role="img"

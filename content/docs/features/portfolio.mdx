@@ -1,0 +1,70 @@
+---
+title: Portfolio Intelligence
+description: AI-powered portfolio analysis, rebalancing suggestions, and performance attribution across all asset classes.
+icon: TrendingUp
+---
+
+## Overview
+
+Portfolio Intelligence is the core of WealthCreators AI. It combines real-time market data with AI reasoning to give you a clear picture of your portfolio's health, performance, and opportunities.
+
+## Key Capabilities
+
+### Portfolio Analysis
+
+Connect your brokerage accounts or upload your holdings manually. The AI will:
+
+- Calculate portfolio allocation across sectors, geographies, and asset classes
+- Measure performance against relevant benchmarks (S&P 500, Russell 2000, custom)
+- Identify concentration risk and correlation clusters
+
+### Rebalancing Suggestions
+
+Based on your target allocation and current drift, the AI generates:
+
+```json
+{
+  "action": "rebalance",
+  "trades": [
+    { "ticker": "AAPL", "direction": "sell", "amount": "$2,400", "reason": "tech overweight 8%" },
+    { "ticker": "BND",  "direction": "buy",  "amount": "$1,800", "reason": "bonds underweight 6%" }
+  ],
+  "estimated_tax_impact": "$340"
+}
+```
+
+### Performance Attribution
+
+Understand exactly what is driving your returns:
+
+- Factor attribution (value, growth, momentum, quality)
+- Sector and geographic contribution
+- Individual holding contribution over any time period
+
+## Configuration
+
+Enable Portfolio Intelligence in your `wealthcreators.yaml`:
+
+```yaml
+features:
+  portfolio:
+    enabled: true
+    benchmarks:
+      - SPY
+      - QQQ
+    rebalancing:
+      drift_threshold: 5  # percent before suggesting rebalance
+      tax_aware: true
+```
+
+## Connecting Brokerages
+
+WealthCreators AI supports portfolio import via:
+
+- **CSV upload** — export from any brokerage and upload
+- **Manual entry** — add holdings directly in the UI
+- **API integration** — connect via REST API (see [API docs](/docs/configuration))
+
+<Callout type="info">
+Direct brokerage OAuth connections (Plaid, Schwab, Fidelity) are available in the Enterprise tier.
+</Callout>

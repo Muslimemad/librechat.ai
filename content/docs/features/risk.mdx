@@ -1,0 +1,78 @@
+---
+title: Risk Analysis
+description: Portfolio risk metrics, correlation analysis, drawdown simulation, and hedging strategies — all AI-explained.
+icon: Shield
+---
+
+## Overview
+
+Risk Analysis provides a comprehensive view of portfolio risk across multiple dimensions — from individual position risk to macroeconomic exposure.
+
+## Risk Metrics
+
+### Value at Risk (VaR)
+
+The AI calculates portfolio VaR at configurable confidence intervals:
+
+- **95% VaR**: Potential loss on 1 in 20 trading days
+- **99% VaR**: Potential loss on 1 in 100 trading days
+
+### Maximum Drawdown
+
+- Historical maximum drawdown over selectable time periods
+- Drawdown duration and recovery analysis
+- Comparison to benchmark drawdowns
+
+### Beta & Correlation
+
+- Portfolio beta to broad market, sector, and factor indices
+- Pairwise correlation matrix across holdings
+- Hidden correlation clusters during market stress
+
+## Drawdown Simulation
+
+Run scenario-based stress tests on your portfolio:
+
+```yaml
+scenarios:
+  - name: "2008 Financial Crisis"
+    start_date: "2007-10-09"
+    end_date: "2009-03-09"
+  - name: "2020 COVID Crash"
+    start_date: "2020-02-19"
+    end_date: "2020-03-23"
+  - name: "Custom"
+    equity_shock: -30%
+    bond_shock: +5%
+    commodity_shock: -20%
+```
+
+## Hedging Strategies
+
+Based on your risk analysis, the AI can suggest hedging approaches:
+
+- **Options strategies** — protective puts, collars, covered calls
+- **Inverse ETFs** — sector and broad market hedges
+- **Asset allocation shifts** — moving to cash, gold, or treasuries
+- **Geographic diversification** — reducing home country bias
+
+## Configuration
+
+```yaml
+features:
+  risk_analysis:
+    enabled: true
+    var_confidence: [0.95, 0.99]
+    lookback_period: 252  # trading days
+    benchmark: SPY
+    stress_tests:
+      enabled: true
+      scenarios:
+        - "2008"
+        - "2020"
+        - "custom"
+```
+
+<Callout type="warning">
+Risk metrics are based on historical data and models. Past performance does not guarantee future results. This is not financial advice.
+</Callout>

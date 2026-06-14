@@ -29,6 +29,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
+        display: ['var(--font-anton)', 'Impact', 'system-ui'],
       },
       colors: {
         border: 'hsl(var(--border))',

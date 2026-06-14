@@ -1,0 +1,75 @@
+---
+title: Tax Optimization
+description: AI-assisted tax-loss harvesting, wash-sale avoidance, and year-end tax strategy recommendations.
+icon: DollarSign
+---
+
+## Overview
+
+Tax Optimization helps you keep more of what you earn. The AI continuously monitors your portfolio for tax-saving opportunities and alerts you before year-end deadlines.
+
+## Tax-Loss Harvesting
+
+The AI identifies positions with unrealized losses and suggests tax-loss harvesting trades:
+
+1. Scans your taxable accounts for loss positions
+2. Identifies suitable replacement securities (avoiding wash sales)
+3. Calculates net tax benefit after transaction costs
+4. Generates trade instructions for your broker
+
+### Example
+
+> You hold 100 shares of XYZ at a $4,200 loss. The AI suggests selling XYZ and buying a similar ETF to maintain market exposure while realizing the tax loss — saving an estimated $1,050 in federal taxes.
+
+## Wash Sale Avoidance
+
+The 30-day wash sale rule prevents you from buying back a "substantially identical" security within 30 days. The AI:
+
+- Tracks all recent sales across accounts
+- Flags purchases that would trigger a wash sale
+- Suggests compliant replacement securities
+- Monitors the 30-day waiting period
+
+## Asset Location Optimization
+
+Place the right assets in the right account types:
+
+| Asset Type | Recommended Account |
+|---|---|
+| REITs, bonds, high-dividend stocks | Tax-deferred (IRA, 401k) |
+| Growth stocks held long-term | Taxable brokerage |
+| International stocks (foreign tax credit) | Taxable brokerage |
+| High-yield bonds | Tax-deferred |
+
+## Year-End Tax Planning
+
+In Q4, the AI runs a comprehensive tax planning checklist:
+
+- Realized gains/losses summary
+- Remaining loss harvesting opportunities
+- Roth conversion analysis
+- Charitable giving optimization (bunching, DAFs)
+- Required minimum distributions (RMDs)
+
+## Configuration
+
+```yaml
+features:
+  tax:
+    enabled: true
+    tax_year: 2026
+    jurisdiction: US
+    accounts:
+      - type: taxable
+        id: brokerage-001
+      - type: traditional_ira
+        id: ira-001
+    harvesting:
+      min_loss_threshold: 500   # minimum loss to trigger alert
+      auto_scan: true
+      scan_frequency: weekly
+```
+
+<Callout type="warning">
+Tax optimization features are informational. Always consult a qualified tax professional before executing tax strategies. Tax laws vary by jurisdiction and individual circumstances.
+</Callout>

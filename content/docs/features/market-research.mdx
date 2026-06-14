@@ -1,0 +1,67 @@
+---
+title: Market Research
+description: Deep market analysis with AI-powered insights, trend detection, and competitive intelligence.
+icon: BarChart3
+---
+
+## Overview
+
+Market Research gives you institutional-grade intelligence on any market, sector, or company — available through natural language chat.
+
+## What You Can Research
+
+### Company Analysis
+
+Ask the AI to research any publicly traded company:
+
+- Financial metrics (P/E, EV/EBITDA, revenue growth, margins)
+- Competitive positioning and market share
+- Management team and recent earnings commentary
+- Analyst consensus and price targets
+
+### Sector Intelligence
+
+Get a macro view of any sector:
+
+- Relative performance vs. market
+- Key drivers and headwinds
+- Top and bottom performing names
+
+### Macro Research
+
+- Interest rate environment analysis
+- Economic indicator trends (CPI, jobs, PMI)
+- Currency and commodity outlook
+
+## AI-Powered Insights
+
+The market research engine uses multi-step reasoning:
+
+1. Retrieves real-time and historical data
+2. Cross-references multiple data sources
+3. Synthesizes findings into clear, actionable insights
+4. Surfaces risks and opportunities with citations
+
+## Configuration
+
+```yaml
+features:
+  market_research:
+    enabled: true
+    data_providers:
+      - source: financial_modeling_prep
+        api_key: ${FMP_API_KEY}
+    web_search: true
+    cache_ttl: 300  # seconds
+```
+
+## Example Prompts
+
+- "Compare NVDA vs AMD on revenue growth and margins for the last 4 quarters"
+- "What are the biggest risks facing the regional banking sector right now?"
+- "Summarize Tesla's Q3 2025 earnings call key takeaways"
+- "Which S&P 500 sectors have the highest short interest?"
+
+<Callout type="tip">
+Enable [Web Search](/docs/features/web_search) to give market research access to live news and filings.
+</Callout>

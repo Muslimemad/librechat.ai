@@ -1,0 +1,76 @@
+---
+title: Financial Planning
+description: Goal-based wealth planning, retirement projections, and savings optimization tailored to your timeline.
+icon: Target
+---
+
+## Overview
+
+Financial Planning helps you build a structured roadmap to your wealth goals. Define your objectives, timeline, and risk tolerance — the AI models your path and adjusts as your situation changes.
+
+## Goal Setting
+
+Set multiple financial goals simultaneously:
+
+- **Retirement** — target age, desired income, Social Security assumptions
+- **Education** — college funding for children or grandchildren
+- **Real Estate** — down payment savings timeline
+- **Major Purchase** — vehicle, boat, business equipment
+- **Custom** — any financial milestone you define
+
+## Retirement Projections
+
+The Monte Carlo simulation engine runs thousands of scenarios:
+
+```
+Retirement Goal Analysis
+━━━━━━━━━━━━━━━━━━━━━━━━
+Current age:          35
+Target retirement:    65
+Current savings:      $180,000
+Monthly contribution: $2,500
+Expected return:      7% (moderate)
+
+Probability of success: 87%
+Projected at 50th %ile: $2.1M
+Projected at 90th %ile: $3.4M
+Projected at 10th %ile: $1.1M
+
+Recommended adjustment:
++ $400/month increases success to 95%
+```
+
+## Safe Withdrawal Rate Analysis
+
+Understand how much you can safely withdraw:
+
+- Traditional 4% rule analysis
+- Dynamic withdrawal strategies
+- Sequence-of-returns risk modeling
+- Social Security optimization timing
+
+## Configuration
+
+```yaml
+features:
+  financial_planning:
+    enabled: true
+    simulation:
+      runs: 10000
+      inflation_rate: 3.0
+    tax:
+      filing_status: married_filing_jointly
+      state: CA
+```
+
+## Collaborative Planning
+
+Share planning scenarios with your advisor:
+
+- Export projections as PDF reports
+- Share interactive scenario links
+- Track plan vs. actual over time
+
+<Callout type="info">
+WealthCreators AI planning tools are for educational and informational purposes. Consult a licensed financial advisor for personalized advice.
+</Callout>

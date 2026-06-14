@@ -8,92 +8,52 @@ const menuItems: {
   items: { name: string; href: string }[]
 }[] = [
   {
-    heading: 'About',
+    heading: 'Platform',
     items: [
-      {
-        name: 'About',
-        href: '/about',
-      },
+      { name: 'About', href: '/about' },
       { name: 'Contact Us', href: '/about#contact-us' },
-      {
-        name: 'Features',
-        href: '/docs/features',
-      },
+      { name: 'Features', href: '/docs/features' },
     ],
   },
   {
     heading: 'Resources',
     items: [
-      {
-        name: 'Changelog',
-        href: '/changelog',
-      },
-      {
-        name: 'Roadmap',
-        href: '/blog/2026-02-18_2026_roadmap',
-      },
-      {
-        name: 'Demo',
-        href: 'https://chat.librechat.ai/',
-      },
-      {
-        name: 'Status',
-        href: 'https://status.librechat.ai/',
-      },
+      { name: 'Changelog', href: '/changelog' },
+      { name: 'Roadmap', href: '/blog' },
+      { name: 'Blog', href: '/blog' },
     ],
   },
   {
     heading: 'Documentation',
     items: [
-      {
-        name: 'Get Started',
-        href: '/docs',
-      },
-      {
-        name: 'Local Install',
-        href: '/docs/local',
-      },
-      {
-        name: 'Remote Install',
-        href: '/docs/remote',
-      },
+      { name: 'Get Started', href: '/docs' },
+      { name: 'Quick Start', href: '/docs/quick_start' },
+      { name: 'Local Install', href: '/docs/local' },
+      { name: 'Remote Install', href: '/docs/remote' },
     ],
   },
   {
-    heading: 'Blog',
+    heading: 'Features',
     items: [
-      { name: 'Blog', href: '/blog' },
-      { name: 'Blog Authors', href: '/authors' },
+      { name: 'Portfolio AI', href: '/docs/features/portfolio' },
+      { name: 'Market Research', href: '/docs/features/market-research' },
+      { name: 'AI Agents', href: '/docs/features/agents' },
+      { name: 'Risk Analysis', href: '/docs/features/risk' },
     ],
   },
   {
     heading: 'Newsletter',
     items: [
-      {
-        name: 'Subscribe',
-        href: '/subscribe',
-      },
-      {
-        name: 'Unsubscribe',
-        href: '/unsubscribe',
-      },
+      { name: 'Subscribe', href: '/subscribe' },
+      { name: 'Unsubscribe', href: '/unsubscribe' },
     ],
   },
   {
     heading: 'Legal',
     items: [
-      {
-        name: 'Terms of Service',
-        href: '/tos',
-      },
-      {
-        name: 'Privacy policy',
-        href: '/privacy',
-      },
-      {
-        name: 'Cookie policy',
-        href: '/cookie',
-      },
+      { name: 'Terms of Service', href: '/tos' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Cookie Policy', href: '/cookie' },
     ],
   },
 ]
@@ -102,32 +62,32 @@ const socialLinks = [
   {
     title: 'GitHub',
     icon: <Github className="size-4" aria-hidden="true" />,
-    href: 'https://github.librechat.ai/',
+    href: 'https://github.com/muslimemad/wealthcreators-ai',
   },
   {
     title: 'Discord',
     icon: <Discord className="size-4" aria-hidden="true" />,
-    href: 'https://discord.librechat.ai/',
+    href: '#',
   },
   {
     title: 'LinkedIn',
     icon: <Linkedin className="size-4" aria-hidden="true" />,
-    href: 'https://linkedin.librechat.ai/',
+    href: '#',
   },
   {
     title: 'X',
     icon: <X className="size-4" aria-hidden="true" />,
-    href: 'https://x.com/LibreChatAI',
+    href: '#',
   },
   {
     title: 'YouTube',
     icon: <Youtube className="size-4" aria-hidden="true" />,
-    href: 'https://www.youtube.com/@LibreChat',
+    href: '#',
   },
   {
     title: 'Email',
     icon: <Mail className="size-4" aria-hidden="true" />,
-    href: 'mailto:contact@librechat.ai',
+    href: 'mailto:contact@wealthcreators.ai',
   },
 ]
 
@@ -155,7 +115,7 @@ const FooterMenu = () => {
         ))}
       </nav>
       <div className="flex items-center justify-between mt-8">
-        <div className="font-sans text-sm">&copy; {new Date().getFullYear()} LibreChat</div>
+        <div className="font-sans text-sm">&copy; {new Date().getFullYear()} WealthCreators AI</div>
         <nav aria-label="Social media" className="flex items-center gap-1">
           {socialLinks.map((link) => (
             <Link

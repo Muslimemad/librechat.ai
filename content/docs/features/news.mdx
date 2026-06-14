@@ -1,0 +1,77 @@
+---
+title: News Intelligence
+description: AI-curated financial news with real-time sentiment scoring and impact analysis across your holdings.
+icon: Globe
+---
+
+## Overview
+
+News Intelligence monitors thousands of financial news sources and surfaces only what's relevant to your portfolio — with AI-generated sentiment scores and impact assessments.
+
+## How It Works
+
+1. **Ingest** — Continuous monitoring of news wires, SEC filings, earnings transcripts, and financial blogs
+2. **Filter** — AI filters to news relevant to your holdings, watchlist, and interests
+3. **Score** — Each article receives a sentiment score (-1.0 to +1.0) and impact rating
+4. **Alert** — High-impact news triggers immediate notifications
+
+## Sentiment Scoring
+
+```
+NVDA Earnings Beat — Q3 2025
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sentiment:     +0.82 (Very Positive)
+Impact:        High
+Relevance:     Direct holding
+
+Summary: Beat EPS by $0.18, raised guidance 12%.
+Data center revenue +45% YoY. AI chip demand
+remains strong per management commentary.
+
+Your exposure: 3.2% of portfolio ($8,400)
+```
+
+## News Sources
+
+- Major financial wire services (Reuters, AP, Bloomberg summaries)
+- SEC EDGAR filings (8-K, 10-K, 10-Q, proxy statements)
+- Earnings call transcripts
+- Central bank communications (Fed, ECB, BoJ)
+- Economic data releases
+
+## Custom Alerts
+
+Set up alerts for specific events:
+
+```yaml
+features:
+  news:
+    enabled: true
+    alert_thresholds:
+      sentiment_drop: -0.5    # alert when sentiment drops significantly
+      impact: high            # only high-impact news
+    sources:
+      - sec_filings
+      - earnings_transcripts
+      - wire_services
+    watchlist:
+      - AAPL
+      - MSFT
+      - BTC
+    topics:
+      - interest_rates
+      - inflation
+      - AI_technology
+```
+
+## Integration with Portfolio
+
+News Intelligence integrates with Portfolio Intelligence to show:
+
+- How news events have historically affected your holdings
+- Estimated price impact based on similar historical events
+- Correlation between news sentiment and subsequent price moves
+
+<Callout type="tip">
+Enable [AI Agents](/docs/features/agents) to automatically research breaking news and generate detailed briefings.
+</Callout>
