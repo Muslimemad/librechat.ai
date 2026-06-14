@@ -82,3 +82,17 @@
 .social-svg {
   border-radius: 10px !important;
 }
+
+/* ---------------------------------------------------------- */
+/* Coach app — Obsidian/Gold theme (scoped, docs site untouched) */
+/* ---------------------------------------------------------- */
+.theme-coach {
+  --coach-bg:      220 15% 7%;
+  --coach-sidebar: 220 12% 5%;
+  --coach-surface: 220 12% 11%;
+  --coach-border:  220 10% 17%;
+  --coach-fg:      220 8% 94%;
+  --coach-muted:   220 6% 52%;
+  --coach-gold:    43 93% 56%;
+}
+
